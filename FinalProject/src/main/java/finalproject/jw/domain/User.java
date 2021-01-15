@@ -38,7 +38,6 @@ public class User {
     private String password;
 
     @JsonIgnore
-    @EqualsAndHashCode.Exclude
     @ManyToMany(targetEntity = Credit.class)
     @JoinTable(name = "user_credit_card",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
@@ -52,18 +51,15 @@ public class User {
     private Set<Credit> creditCards;
 
     @JsonIgnore
-    @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "user")
     private Set<Order> orders;
 
     @JsonIgnore
-    @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "user")
     private Set<Seller> sellers;
 
     @JsonIgnore
     @OneToOne
-    @EqualsAndHashCode.Exclude
     private Cart cart;
 
     public User(UserRegistrationDTO user) throws UserException {
